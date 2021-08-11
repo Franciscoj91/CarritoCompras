@@ -5,6 +5,7 @@ $(document).ready(function () {
     let carrito = {};
     let clon1;
     let clon2;
+    let clon3;
     const items = $("#item-card");
     const itemsTabla = $("#tabla-body");
     const footer = $("#tabla-footer");
@@ -17,6 +18,10 @@ $(document).ready(function () {
     $("#item-card").click(e => { 
         addCarrito(e);
         
+    });
+
+    itemsTabla.click(e => {
+        accionBtn(e);
     });
     
     const fetchData = async () => {
@@ -87,11 +92,70 @@ $(document).ready(function () {
             clon2 = templateCarrito.clone(true);
             itemsTabla.append(clon2);
         }); 
+
+        dibujarFooter();
     }
 
-    
+    const dibujarFooter = () => {
+        footer.html("");
 
+        if(Object.keys(carrito).length === 0) {
+            footer.html('<tr><th colspan="5">Carrito Vacio - Selecciona una Peli</th></tr>')
 
+            return
+        }
+
+        const sumaCantidad = Object.values(carrito).reduce((acum,{cantidad}) => acum + cantidad,0);
+
+        templateFooter.find("td:eq(0)").html(sumaCantidad);
+
+        clon3 = templateFooter.clone(true);
+        footer.append(clon3);
+
+        const vaciarBtn = $("#vaciar-carrito");
+
+        vaciarBtn.click(() => {
+            carrito = {};
+            dibujarCarrito();
+        });
+        
+    }
+
+    const accionBtn = e => {
+        let target = $(e.target);
+        console.log(target);
+
+        if(target.hasClass("btn-info")) {
+            
+            
+            //console.log(carrito[target.parents("tr").find("th").html()])
+
+            const producto = carrito[target.parents("tr").find("th").html()];
+
+            producto.cantidad++;
+
+            carrito[target.parents("tr").find("th").html()] = {...producto};
+            dibujarCarrito();
+        }
+
+        if(target.hasClass("btn-danger")) {
+            
+            
+            //console.log(carrito[target.parents("tr").find("th").html()])
+
+            const producto = carrito[target.parents("tr").find("th").html()];
+
+            producto.cantidad--;
+
+            if(producto.cantidad === 0) {
+                delete carrito[target.parents("tr").find("th").html()];
+            }
+
+            dibujarCarrito();
+        }
+
+        e.stopPropagation()
+    }
     
 
 });
