@@ -123,7 +123,7 @@ $(document).ready(function () {
 
     const accionBtn = e => {
         let target = $(e.target);
-        console.log(target);
+        
 
         if(target.hasClass("btn-info")) {
             
