@@ -28,7 +28,7 @@ $(document).ready(function () {
 
         try {
             for (let i=0; i < 8;i++) {
-                let response = await fetch('http://www.omdbapi.com/?apikey=e0e85859&i=tt' + id);
+                let response = await fetch('https://www.omdbapi.com/?apikey=e0e85859&i=tt' + id);
                 data[i] = await response.json();
                 id++;
             }
