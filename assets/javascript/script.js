@@ -3,9 +3,15 @@ $(document).ready(function () {
     let id = 3896198;
     let data = [];
     let carrito = {};
+    let clon1;
+    let clon2;
     const items = $("#item-card");
+    const itemsTabla = $("#tabla-body");
+    const footer = $("#tabla-footer");
     const templateCards = $("#template-card").contents();
-    const fragment = document.createDocumentFragment();
+    const templateCarrito = $("#template-carrito").contents();
+    const templateFooter = $("#template-footer").contents();
+    
     
     
     $("#item-card").click(e => { 
@@ -35,10 +41,10 @@ $(document).ready(function () {
             templateCards.find("h5").html(producto.Title);
             templateCards.find("p").html(producto.Plot);
             templateCards.find("img").attr("src", producto.Poster);
-            templateCards.find("button").attr("id", data.indexOf(producto));
+            templateCards.find("button").attr("id", data.indexOf(producto) + 1);
 
-            const clon = templateCards.clone(true);
-            items.append(clon);
+            clon1 = templateCards.clone(true);
+            items.append(clon1);
         });
         
     }
@@ -67,7 +73,20 @@ $(document).ready(function () {
         }
 
         carrito[producto.id] = {...producto};
-        console.log(carrito);
+        dibujarCarrito();
+    }
+
+    const dibujarCarrito = () => {
+        
+        itemsTabla.html("");
+        Object.values(carrito).forEach(item => {
+            templateCarrito.find("th").html(item.id);
+            templateCarrito.find("td:eq(0)").html(item.title);
+            templateCarrito.find("td:eq(1)").html(item.cantidad);
+
+            clon2 = templateCarrito.clone(true);
+            itemsTabla.append(clon2);
+        }); 
     }
 
     

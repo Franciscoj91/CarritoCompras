@@ -20,7 +20,7 @@
         </div>
     </nav>
 
-    <section class="container" id="items">
+    <section class="container p-5" id="items">
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="item-card">
             
@@ -28,9 +28,9 @@
 
     </section>
 
-    <section class="container" id="carrito">
+    <section class="container p-5" id="carrito">
 
-        <table class="table">
+        <table class="table p-5">
             <h1>Carrito</h1>
             <thead>
                 <tr>
@@ -40,31 +40,11 @@
                     <th scope="col">Acción</th>
                 </tr>
             </thead>
-            <!--<tbody>
+            <tbody id="tabla-body"> 
+            </tbody>
+            <tfoot id="tabla-footer">  
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>-->
-            <tfoot>
-                <tr>
-                    <th colspan="2">Carrito Vacio - Selecciona una Peli</th>
-                    <td>n</td>
-                    <td><button>Vaciar</button></td>
+                    <th colspan="5">Carrito Vacio - Selecciona una Peli</th>
                 </tr>
             </tfoot>
         </table>
@@ -81,6 +61,31 @@
                 </div>
             </div>
         </div>
+    </template>
+
+    <template id="template-carrito">
+        <tr>
+            <th scope="row">ID</th>
+            <td>Item</td>
+            <td>1</td>
+            <td>
+                <button class="btn btn-info btn-sm">
+                    +
+                </button>
+                <button class="btn btn-danger btn-sm">
+                    -
+                </button>
+            </td>
+        </tr>
+        
+    </template>
+
+    <template id="template-footer">
+        <tr>
+            <th colspan="2">Total</th>
+            <td>cantidad</td>
+            <td><button class="btn btn-danger">Vaciar</button></td>
+        </tr>
     </template>
 
     <!-- JQuery 3.6.0 -->
